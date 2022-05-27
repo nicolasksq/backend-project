@@ -11,7 +11,7 @@ import (
 )
 
 type FinderPeople interface {
-	AllPeople() []*models.Person
+	GetAllPeople() []*models.Person
 	FindPersonByID(id uuid.UUID) (*models.Person, error)
 	FindPeopleByNames(firstName, lastName string) []*models.Person
 	FindPeopleByPhoneNumber(phoneNumber string) []*models.Person
@@ -19,8 +19,8 @@ type FinderPeople interface {
 
 type PeopleDB struct{}
 
-// AllPeople returns all people in `people`.
-func (p PeopleDB) AllPeople() []*models.Person {
+// GetAllPeople returns all people in `people`.
+func (p PeopleDB) GetAllPeople() []*models.Person {
 	return mocks.People
 }
 
@@ -34,7 +34,7 @@ func (p PeopleDB) FindPersonByID(id uuid.UUID) (*models.Person, error) {
 	return nil, errors.New(fmt.Sprintf("user ID %s not found", id.String()))
 }
 
-// FindPeopleByName performs a case-sensitive search for people in `people` by first and last name.
+// FindPeopleByNames performs a case-sensitive search for people in `people` by first and last name.
 func (p PeopleDB) FindPeopleByNames(firstName, lastName string) []*models.Person {
 	result := make([]*models.Person, 0)
 	for _, person := range mocks.People {

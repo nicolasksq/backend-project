@@ -28,7 +28,7 @@ func (p *PeopleTestSuite) SetupTest() {
 
 func (p *PeopleTestSuite) TestGetAllPeopleSuccess() {
 	expected := mocks.People
-	people := p.peopleDB.AllPeople()
+	people := p.peopleDB.GetAllPeople()
 
 	assert.Equal(p.T(), expected, people)
 }
