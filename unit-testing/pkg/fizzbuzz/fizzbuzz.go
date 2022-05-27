@@ -6,19 +6,11 @@ import (
 )
 
 // FizzBuzz performs a FizzBuzz operation over a range of integers
-//
-// Given a range of integers:
-// - Return "Fizz" if the integer is divisible by the `fizzAt` value.
-// - Return "Buzz" if the integer is divisible by the `buzzAt` value.
-// - Return "FizzBuzz" if the integer is divisible by both the `fizzAt` and
-//   `buzzAt` values.
-// - Return the original number if is is not divisible by either the `fizzAt` or
-//   the `buzzAt` values.
 
-// FizzBuzz TODO (done) added a recover function in case of panic -> divide by zero
+// TODO (done) added a recover function in case of panic -> divide by zero
 // another options:
 //	- check if the number is 0 and then return a <nil, error>
-//	- check if the number is 0 and then return <[]string>
+//	- check if the number is 0 and then return <[]string{}>
 
 func FizzBuzz(total, fizzAt, buzzAt int64) []string {
 	defer func() {
