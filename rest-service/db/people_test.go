@@ -2,13 +2,13 @@ package db_test
 
 import (
 	"fmt"
-	uuid "github.com/satori/go.uuid"
-	"server/db/models"
 	"testing"
 
 	"server/db"
 	"server/db/mocks"
+	"server/db/models"
 
+	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
