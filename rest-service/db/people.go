@@ -13,7 +13,7 @@ import (
 type FinderPeople interface {
 	AllPeople() []*models.Person
 	FindPersonByID(id uuid.UUID) (*models.Person, error)
-	FindPeopleByName(firstName, lastName string) []*models.Person
+	FindPeopleByNames(firstName, lastName string) []*models.Person
 	FindPeopleByPhoneNumber(phoneNumber string) []*models.Person
 }
 
@@ -35,7 +35,7 @@ func (p PeopleDB) FindPersonByID(id uuid.UUID) (*models.Person, error) {
 }
 
 // FindPeopleByName performs a case-sensitive search for people in `people` by first and last name.
-func (p PeopleDB) FindPeopleByName(firstName, lastName string) []*models.Person {
+func (p PeopleDB) FindPeopleByNames(firstName, lastName string) []*models.Person {
 	result := make([]*models.Person, 0)
 	for _, person := range mocks.People {
 		if person.FirstName == firstName && person.LastName == lastName {
