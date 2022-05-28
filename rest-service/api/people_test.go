@@ -2,14 +2,16 @@ package api_test
 
 import (
 	"errors"
-	uuid "github.com/satori/go.uuid"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/suite"
+	"testing"
+
 	"server/api"
 	"server/api/transforms"
 	"server/db/mocks"
 	"server/db/models"
-	"testing"
+
+	uuid "github.com/satori/go.uuid"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
 )
 
 type PeopleApiTestSuite struct {

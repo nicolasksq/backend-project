@@ -1,8 +1,9 @@
 package mocks
 
 import (
-	uuid "github.com/satori/go.uuid"
 	"server/db/models"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 // People is the data source for the People RESTful service.

@@ -2,14 +2,13 @@ package api
 
 import (
 	"errors"
+
 	"server/api/entities"
 	"server/api/transforms"
 	"server/db"
 
 	uuid "github.com/satori/go.uuid"
 )
-
-var validFieldsToSearch = []string{"first_name", "last_name", "phone_number"}
 
 type PeopleGetter interface {
 	GetAll() []*entities.Person
