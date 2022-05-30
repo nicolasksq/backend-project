@@ -1,0 +1,6 @@
+this is a message with an error
+this is a message with another ERROR
+this is a message with a huge ERROR
+this ERRrOR need to be tracked
+HEEEY, we have an ERROR here!!!
+heeey, we have a little error here!!
