@@ -130,6 +130,19 @@ func TestFizzBuzzWithZeroValue(t *testing.T) {
 	}
 }
 
+func TestFizzBuzzWithNegativeValue(t *testing.T) {
+	// this should log an error but still
+	testsToRun := []testsStruct{
+		buildTest("should return a valid values", 5, -1, -3, []string{"Fizz", "Fizz", "FizzBuzz", "Fizz", "Fizz"}),
+	}
+	for _, test := range testsToRun {
+		t.Run(test.name, func(t *testing.T) {
+			result := FizzBuzz(test.total, test.fizzAt, test.buzzAt)
+			assert.Equal(t, test.expected, result)
+		})
+	}
+}
+
 func buildTest(name string, total, fizzAt, buzzAt int64, expected []string) testsStruct {
 	return testsStruct{
 		name:     name,

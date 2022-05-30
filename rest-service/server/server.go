@@ -54,27 +54,28 @@ func (s Server) Start() error {
 func (s Server) Get(c *gin.Context) {
 	firstname, lastname, phonenumber := c.Query(firstnameField), c.Query(lastnameField), c.Query(phoneNumberField)
 	noParams := firstname == "" && lastname == "" && phonenumber == ""
+	// if there is no params in url we get all.
 	if noParams {
-		// if there is no params in url we get all.
 		res := s.PeopleAPI.GetAll()
 		response := responses.PeopleResponse{
 			People: res,
 			Total:  len(res),
 		}
 		c.IndentedJSON(http.StatusOK, response)
-	} else {
-		// if there is params in url we try to get from there.
-		res, err := s.PeopleAPI.GetByFields(firstname, lastname, phonenumber)
-		if err != nil {
-			c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "you should provide a valid params"})
-			return
-		}
-		response := responses.PeopleResponse{
-			People: res,
-			Total:  len(res),
-		}
-		c.IndentedJSON(http.StatusOK, response)
+		return
 	}
+
+	// if there is params in url we try to get from there.
+	res, err := s.PeopleAPI.GetByFields(firstname, lastname, phonenumber)
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "you should provide all params needed"})
+		return
+	}
+	response := responses.PeopleResponse{
+		People: res,
+		Total:  len(res),
+	}
+	c.IndentedJSON(http.StatusOK, response)
 }
 
 func (s Server) GetByID(c *gin.Context) {

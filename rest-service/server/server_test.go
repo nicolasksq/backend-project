@@ -150,6 +150,24 @@ func (p *PeopleServerTestSuite) TestGetByFirstnameAndLastName() {
 	p.mockApi.AssertExpectations(p.T())
 }
 
+func (p *PeopleServerTestSuite) TestGetByFirstnameAndLastNameErrMissingFirstname() {
+	w := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(w)
+	s := p.mockedServer()
+
+	expectedCode := http.StatusBadRequest
+
+	p.mockApi.On("GetByFields", "", "andreoli", "").Return(nil, errors.New("need a valid param to search")).Once()
+
+	req, _ := http.NewRequest("GET", "/people?last_name=andreoli", w.Body)
+	c.Request = req
+	s.Get(c)
+
+	//asserts
+	p.Equal(expectedCode, w.Code)
+	p.mockApi.AssertExpectations(p.T())
+}
+
 func (p *PeopleServerTestSuite) TestGetByID() {
 	w := httptest.NewRecorder()
 	c, _ := gin.CreateTestContext(w)
